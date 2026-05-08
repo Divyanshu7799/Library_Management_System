@@ -1,4 +1,5 @@
 #include"include/controller/Manager.hpp"
+#include "include/repository/File_DB.hpp"
 int main(){
   Main_DB *db= new File_DB(); 
     Manager m(db);
@@ -43,4 +44,5 @@ switch(choice){
     default :cout<<"Invalid input"<<endl;
 }
 }
+delete db;
 }

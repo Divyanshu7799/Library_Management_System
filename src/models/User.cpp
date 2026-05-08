@@ -12,6 +12,34 @@ string User::get_name(){
 int User::get_user_id(){
     return user_id;
 }
-string User::add_to_file(){
+string User::add_to_file() const{
     return to_string(user_id)+","+name+","+to_string(BookCount);
+}
+void User::count(){
+    this->BookCount++;
+}
+void User::countd_dec(){
+    this->BookCount--;
+}
+User User::fromString(string line){
+      vector<string> d;
+    string temp="";
+
+    for(char c : line){
+        if(c==','){
+            d.push_back(temp);
+            temp="";
+        }
+        else{
+            temp+=c;
+        }
+    }
+
+    d.push_back(temp);
+
+    return User(
+        stoi(d[0]),
+        d[1]
+    );
+
 }

@@ -6,6 +6,8 @@
 #include<string>
 #include<vector>
 #include"Main_DB.hpp"
+#include"../../include/models/Book.hpp"
+#include"../../include/models/User.hpp"
 using namespace std;
 class File_DB:public Main_DB{
 
@@ -15,14 +17,13 @@ class File_DB:public Main_DB{
     string logFile;
     public:
    File_DB();
-   vector<string> ReadBook() override;
-   void appendBook(const string& data)override;
-   void UpdateBooks(const vector<string>& lines)override;
-   void UpdateUser(const vector<string>& lines)override;
-   void appendUser(const string& data)override;
-   vector<string> readUsers()override;
-   void appendLog(const string& data)override;
-
+    vector<Book> loadBooks() override;
+    void saveBooks( const vector<Book>& books) override;
+    vector<User> loadUsers() override;
+    void saveUsers( const vector<User>& users ) override;
+    vector<Log> loadLogs() override;
+    void saveLogs(const vector<Log>& logs) override;
+    void appendLog(const string& log) override;
 
 };
 

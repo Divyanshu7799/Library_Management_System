@@ -1,5 +1,5 @@
 #include"../../include/models/Book.hpp"
-
+#include <sstream>
 Book::Book(int id,string Title,string Author_Name,string Category){
     this->id =id;
     this->Title=Title;
@@ -25,8 +25,11 @@ bool Book::get_status(){
 void Book::update_status(bool s){
     status=s;
 }
+string Book::get_Author(){
+    return Author_Name;
+}
 
-string Book::add_to_file(){
+string Book::add_to_file()const {
     string sta;
     if(status==1){
       sta="Available";
@@ -39,3 +42,27 @@ string Book::add_to_file(){
     
 }
 
+Book Book::fromString(string line){
+
+    vector<string> d;
+    string temp="";
+
+    for(char c : line){
+        if(c==','){
+            d.push_back(temp);
+            temp="";
+        }
+        else{
+            temp+=c;
+        }
+    }
+
+    d.push_back(temp);
+
+    return Book(
+        stoi(d[0]),
+        d[1],
+        d[2],
+        d[3]
+    );
+}

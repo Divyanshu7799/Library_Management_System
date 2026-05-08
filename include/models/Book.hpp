@@ -1,6 +1,7 @@
 #ifndef BOOK_H
 #define BOOK_H
 #include<string>
+#include<vector>
 using namespace std;
 class Book{
     private:
@@ -13,8 +14,10 @@ class Book{
     string get_category();
     int get_id();
     bool get_status();
+    string get_Author();
     void update_status(bool s);
-    string add_to_file();
+    string add_to_file() const;
+     static Book fromString(string line);
 };
 
 #endif

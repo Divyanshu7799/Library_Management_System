@@ -5,12 +5,13 @@
 #include"../models/User.hpp"
 #include"../repository/File_DB.hpp"
 #include"../repository/Main_DB.hpp"
+#include"../service/Library_Helper.hpp"
 #include<limits>
 #include<vector>
 using namespace std;
 class Manager{
 private:
-Main_DB *db;
+Library_Helper service;
 public:
 Manager(Main_DB *db);
 void UpdateBookDetails();

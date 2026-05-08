@@ -5,94 +5,121 @@ File_DB::File_DB(){
     this->userFile="DataBase/User.txt";
     this->logFile="DataBase/Log.txt";
 }
-vector<string> File_DB::ReadBook(){
-   vector<string>temp;
-    ifstream f(bookFile);  
-    string line;
-    if(!f){
-        cout<<"Error opening User file!\n";
-        return temp;
-    }
-    while(getline(f,line)){
-        temp.push_back(line);
-    }
-    f.close();
-    return temp;
-}
-void File_DB::appendBook(const string &data){
-   ofstream f(bookFile,ios::app);
-   
-    if(!f){
-        cout<<"Error opening User file!\n";
-        return;
-    }
-   f<<data<<"\n";
-   f.close();
-   
-}
-void File_DB::UpdateBooks(const vector<string>&data){
-  ofstream f(bookFile);
-  
-    if(!f){
-        cout<<"Error opening User file!\n";
-        return;
-    }
-  for(auto &line:data ){
-    f<<line<<"\n";
-  }
-  f.close();
 
-}
 
-void File_DB::appendUser(const string &data){
-    ofstream f(userFile, ios::app);
+vector<Book> File_DB::loadBooks(){
 
-    if(!f){
-        cout<<"Error opening User file!\n";
-        return;
-    }
+    vector<Book> books;
 
-    f << data << "\n";
-    f.close();
+    ifstream file(bookFile);
 
-}
-void File_DB::appendLog(const string &data){
-   ofstream f(logFile, ios::app);
-
-    if(!f){
-        cout<<"Error opening Log file!\n";
-        return;
-    }
-
-    f << data << "\n";
-    f.close();
-}
-vector<string>File_DB::readUsers(){
- vector<string> temp;
-    ifstream f(userFile);
     string line;
 
-    if(!f){
-        cout<<"Error reading User file!\n";
-        return temp;
+    while(getline(file,line)){
+
+        if(line.empty())
+            continue;
+
+        books.push_back(
+            Book::fromString(line)
+        );
     }
 
-    while(getline(f, line)){
-        temp.push_back(line);
-    }
+    file.close();
 
-    f.close();
-    return temp;
+    return books;
 }
-void File_DB::UpdateUser(const vector<string>&data){
-  ofstream f(userFile);
-  
-    if(!f){
-        cout<<"Error opening User file!\n";
-        return;
+
+void File_DB::saveBooks(
+    const vector<Book>& books
+){
+
+    ofstream file(bookFile);
+
+    for(const auto& book : books){
+
+        file << book.add_to_file()
+             << endl;
     }
-  for(auto &line:data ){
-    f<<line<<"\n";
-  }
-  f.close();
+
+    file.close();
+}
+
+// ===== load users =====
+vector<User> File_DB::loadUsers(){
+
+    vector<User> users;
+
+    ifstream file(userFile);
+
+    string line;
+
+    while(getline(file,line)){
+
+        if(line.empty())
+            continue;
+
+        users.push_back(
+            User::fromString(line)
+        );
+    }
+
+    file.close();
+
+    return users;
+}
+
+// ===== save users =====
+void File_DB::saveUsers(
+    const vector<User>& users
+){
+
+    ofstream file(userFile);
+
+    for(const auto& user : users){
+
+        file << user.add_to_file()
+             << endl;
+    }
+
+    file.close();
+}
+vector<Log> File_DB::loadLogs(){
+    vector<Log>lg;
+     ifstream file(logFile);
+
+    string line;
+
+    while(getline(file,line)){
+
+        if(line.empty())
+            continue;
+
+        lg.push_back(
+            Log::fromString(line)
+        );
+    }
+
+    file.close();
+
+    return lg;
+}
+
+void File_DB::appendLog(const string& log){
+    ofstream f(logFile,ios::app);
+    f<<log<<endl;
+    f.close();
+
+}
+void File_DB::saveLogs(const vector<Log>& Logs){
+
+    ofstream file(logFile);
+
+    for(const auto& log : Logs){
+
+        file << log.toFileString()
+             << endl;
+    }
+
+    file.close();
 }

@@ -6,14 +6,17 @@ User::User(int user_id, string name){
     this->BookCount=0;
 }
 
-string User::get_name(){
+string User::get_name()const{
     return name;
 }
-int User::get_user_id(){
+int User::get_user_id()const{
     return user_id;
 }
 string User::add_to_file() const{
     return to_string(user_id)+","+name+","+to_string(BookCount);
+}
+int User::getcount()const{
+    return BookCount;
 }
 void User::count(){
     this->BookCount++;

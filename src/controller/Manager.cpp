@@ -52,6 +52,11 @@ void Manager::SearchByTitle(){
     string title;
 
     cout<<"Enter Title: ";
+    
+    cin.ignore(
+        numeric_limits<streamsize>::max(),
+        '\n'
+    );
     getline(cin,title);
     Book* book = service.searchByTitle(title);
 
@@ -68,6 +73,10 @@ void Manager::SearchByCategory(){
     string category;
     cout<<"Enter Category: ";
 
+    cin.ignore(
+        numeric_limits<streamsize>::max(),
+        '\n'
+    );
     getline(cin,category);
 
     auto books =    service.searchByCategory(category);

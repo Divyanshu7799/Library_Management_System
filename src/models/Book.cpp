@@ -9,23 +9,23 @@ Book::Book(int id,string Title,string Author_Name,string Category){
 
 }
 
-string Book::get_title(){
+string Book::get_title()const {
     return Title;
 }
-string Book::get_category(){
+string Book::get_category()const {
     return Category;
 }
-int Book::get_id(){
+int Book::get_id()const {
     return id;
 }
-bool Book::get_status(){
+bool Book::get_status() const {
     return status;
 }
 
-void Book::update_status(bool s){
+void Book::update_status(bool s) {
     status=s;
 }
-string Book::get_Author(){
+string Book::get_Author()const {
     return Author_Name;
 }
 

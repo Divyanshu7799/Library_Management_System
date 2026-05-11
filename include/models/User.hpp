@@ -10,9 +10,10 @@ class User{
     int BookCount;
     public:
     User(int user_id, string name);
-    int get_user_id();
-    string get_name();
+    int get_user_id()const;
+    string get_name()const;
     string add_to_file() const;
+    int getcount()const;
     static User fromString(string line);
     void count();
     void countd_dec();

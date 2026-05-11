@@ -17,8 +17,8 @@ public:
     virtual vector<User> loadUsers() = 0;
 
     virtual void saveUsers( const vector<User>& users ) = 0;
-    virtual vector<Log>loadLogs() = 0;
-    virtual void saveLogs( const vector<Log>& logs) = 0;
+    // virtual vector<Log>loadLogs() = 0;
+    // virtual void saveLogs( const vector<Log>& logs) = 0;
     virtual void appendLog(const string& log) = 0;
 };
 

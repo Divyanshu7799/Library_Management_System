@@ -1,8 +1,25 @@
 #include"include/controller/Manager.hpp"
 #include "include/repository/File_DB.hpp"
+#include"include/repository/MySql_DB.hpp"
 int main(){
-  Main_DB *db= new File_DB(); 
-    Manager m(db);
+        cout<<"Select the DataBase"<<endl;
+        cout<<"1) File DataBase\n2) SQL Database"<<endl;   
+int c1;
+Main_DB *db;
+cin>>c1;
+if(c1==1){
+db= new File_DB(); 
+  
+}
+else if(c1==2){
+ db= new MySql_DB(); 
+
+}
+else{
+db= new File_DB(); 
+  
+}
+  Manager m(db);
 int choice;
 while(1){
 cout<<endl;
@@ -19,7 +36,7 @@ cout<<"9) Check Availability        :"<<endl;
 cout<<"10) Exit the program         :"<<endl;
 cout<<"\nEnter choice : ";
 cin>>choice;
- cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
 switch(choice){
     case 1: m.AddBook();
            break;

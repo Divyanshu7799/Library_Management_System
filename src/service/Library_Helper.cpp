@@ -65,7 +65,6 @@ bool Library_Helper::issueBook(
         return false;
     }
 
-    // ===== availability =====
     if(foundBook->get_status() == 0){
 
         return false;
@@ -147,7 +146,7 @@ bool Library_Helper::returnBook(
         return false;
     }
 
-    foundBook->update_status(0);
+    foundBook->update_status(1);
 
     foundUser->countd_dec();
 
@@ -230,8 +229,6 @@ bool Library_Helper::updateBook(
     for(auto& book : books){
 
         if(book.get_id() == id){
-
-            // recreate object
             book = Book(
                 id,
                 title,

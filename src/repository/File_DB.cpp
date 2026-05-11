@@ -45,7 +45,7 @@ void File_DB::saveBooks(
     file.close();
 }
 
-// ===== load users =====
+
 vector<User> File_DB::loadUsers(){
 
     vector<User> users;
@@ -69,7 +69,6 @@ vector<User> File_DB::loadUsers(){
     return users;
 }
 
-// ===== save users =====
 void File_DB::saveUsers(
     const vector<User>& users
 ){
@@ -84,26 +83,26 @@ void File_DB::saveUsers(
 
     file.close();
 }
-vector<Log> File_DB::loadLogs(){
-    vector<Log>lg;
-     ifstream file(logFile);
+// vector<Log> File_DB::loadLogs(){
+//     vector<Log>lg;
+//      ifstream file(logFile);
 
-    string line;
+//     string line;
 
-    while(getline(file,line)){
+//     while(getline(file,line)){
 
-        if(line.empty())
-            continue;
+//         if(line.empty())
+//             continue;
 
-        lg.push_back(
-            Log::fromString(line)
-        );
-    }
+//         lg.push_back(
+//             Log::fromString(line)
+//         );
+//     }
 
-    file.close();
+//     file.close();
 
-    return lg;
-}
+//     return lg;
+// }
 
 void File_DB::appendLog(const string& log){
     ofstream f(logFile,ios::app);
@@ -111,15 +110,15 @@ void File_DB::appendLog(const string& log){
     f.close();
 
 }
-void File_DB::saveLogs(const vector<Log>& Logs){
+// void File_DB::saveLogs(const vector<Log>& Logs){
 
-    ofstream file(logFile);
+//     ofstream file(logFile);
 
-    for(const auto& log : Logs){
+//     for(const auto& log : Logs){
 
-        file << log.toFileString()
-             << endl;
-    }
+//         file << log.toFileString()
+//              << endl;
+//     }
 
-    file.close();
-}
+//     file.close();
+// }
